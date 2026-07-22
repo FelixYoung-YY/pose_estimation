@@ -10,7 +10,7 @@ EXPORT_VIDEO = False      # True: 额外导出 mp4(需要 pip install kaleido)
 VIDEO_OUT_PATH = "skeleton.mp4"
 
 POSES_DIR = "poses"       # 姿态缓存目录
-POSES_NAME = None         # 缓存文件名(不含扩展名)。
+POSES_NAME = "sample_pose_wave"  # 缓存文件名(不含扩展名)。
                           # 指定了就按这个名字复用/覆盖缓存;
                           # 留空(None)则每次用当前时间戳命名,保证不会误加载旧数据
 

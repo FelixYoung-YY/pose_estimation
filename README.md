@@ -6,6 +6,16 @@
 
 需要 **Python 3.9 ~ 3.12**(由 mediapipe 决定,不支持 3.13+ 或 3.8 及以下)。
 
+推荐单独建 conda 环境:
+
+```
+conda create -n pose_estimation python=3.11 -y
+conda activate pose_estimation
+pip install -r requirements.txt
+```
+
+也可以在已有环境里直接安装:
+
 ```
 pip install -r requirements.txt
 ```
@@ -27,6 +37,34 @@ python main.py
 
 跑完会生成 `skeleton.html`,浏览器打开即可旋转视角、拖动进度条、播放/暂停。
 
+## 使用 CalTennis 示例数据
+
+项目可以直接用 [CalTennis](https://huggingface.co/datasets/demalenk/caltennis) 里的单人网球视频做验证。完整数据集较大,建议先只下载 `mini` split 里的一条视频:
+
+```
+python download_caltennis_sample.py --split mini --index 0
+```
+
+脚本会把视频下载到 `datasets/caltennis/`,并打印需要写入 [config.py](config.py) 的配置,例如:
+
+```
+VIDEO = r"datasets/caltennis/.../xxx.mp4"
+POSES_NAME = "caltennis_xxx"
+FORCE_REEXTRACT = False
+```
+
+改完后运行:
+
+```
+python main.py
+```
+
+如果想先看有哪些样本而不下载视频,可以只拉元数据:
+
+```
+python download_caltennis_sample.py --split mini --index 0 --metadata-only
+```
+
 ## 文件说明
 
 | 文件 | 作用 |
@@ -36,6 +74,7 @@ python main.py
 | `pose_extract.py` | 视频 -> 3D 姿态序列(`extract_poses`) |
 | `visualize.py` | 姿态序列 -> plotly 动画(`build_figure`),以及可选的 mp4 导出(`export_video`) |
 | `check_footage.py` | 独立诊断脚本,正式提取前先摸清素材能不能支撑分析,见下文 |
+| `download_caltennis_sample.py` | 从 Hugging Face 下载一条 CalTennis 样本视频 |
 
 ## 配置项([config.py](config.py))
 
