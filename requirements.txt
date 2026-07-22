@@ -1,0 +1,9 @@
+mediapipe
+opencv-python
+plotly
+numpy
+tqdm
+
+# 可选依赖
+# kaleido      # EXPORT_VIDEO=True 时需要(视频导出)
+# librosa      # check_footage.py 的音频击球点检测需要(还需要系统装 ffmpeg)
