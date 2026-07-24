@@ -13,6 +13,9 @@ from pathlib import Path
 from urllib.parse import quote
 from urllib.request import urlopen
 
+"""
+长视频，不适合我想要的
+"""
 
 DATASET = "demalenk/caltennis"
 BASE_URL = f"https://huggingface.co/datasets/{DATASET}/resolve/main"
